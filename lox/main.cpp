@@ -7,7 +7,7 @@
 
 void runFile(std::string, Error*);
 void runPrompt(Error*);
-void run(std::string);
+void run(std::string, Error*);
 
 
 
@@ -31,7 +31,7 @@ void runFile(std::string path, Error* error_handler) {
         ss << f.rdbuf();
         s = ss.str();
         //std::cout << s << std::endl;
-        run(s);
+        run(s, error_handler);
         if(error_handler->hadError) system("exit 64");
     }
 }
@@ -42,16 +42,16 @@ void runPrompt(Error* error_handler) {
         std::string s;
         std::getline(std::cin, s);
         //if(s==) break;
-        run(s);
+        run(s, error_handler);
         error_handler->hadError = true;
     }
 }
 
-void run(std::string source) {
-    Scanner scanner(source);
+void run(std::string source, Error* error_handler) {
+    Scanner scanner(source, error_handler);
     std::vector<Token> tokens = scanner.scan_tokens();
 
-    // for(auto& token: tokens) {
-    //     std::cout << token << '\n';
-    // }
+    for(auto& token: tokens) {
+        std::cout << token << '\n';
+    }
 }
