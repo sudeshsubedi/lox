@@ -21,4 +21,13 @@ private:
     char advance();
     void add_token(TokenType);
     void add_token(TokenType, Literal);
+    bool match(char);
+    char peek();
+    void string();
+    bool is_digit(char);
+    void number();
+    char peek_next();
+    bool is_alpha(char);
+    bool is_alpha_numeric(char);
+    void identifier();
 };

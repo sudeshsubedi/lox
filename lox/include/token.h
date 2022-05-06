@@ -26,9 +26,12 @@ enum TokenType
 
 class Literal{
 public:
+    bool is_null = true, is_str = false, is_num = false;
     std::string str;
+    double num;
     Literal() { str=""; }
-    Literal(std::string str): str(str) {}
+    Literal(std::string str): str(str) { is_null = false; is_str = true; }
+    Literal(double num): num(num) { is_null = false; is_num = true; }
 };
 
 

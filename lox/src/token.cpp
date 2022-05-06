@@ -6,7 +6,12 @@ std::ostream &operator<<(std::ostream &output, const Token &T) {
 }
 
 std::ostream &operator<<(std::ostream &output, const Literal &L) {
-    if (L.str == "") output << "null";
-    else output << L.str;
+    if (L.is_null) {
+        output << "null";
+    } else if (L.is_str) {
+        output << L.str;
+    } else if(L.is_num) {
+        output << L.num;
+    }
     return output;
 }
